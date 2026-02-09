@@ -1,0 +1,26 @@
+{
+    "sourceFile": "vision/test_single_camera.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1769790190510,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770130935209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,25 +1,29 @@\n import cv2\n import sys\n \n-idx = int(sys.argv[1])  # 从命令行读 index\n+idx = int(sys.argv[1])\n print(f\"🎥 Testing camera index {idx}\")\n \n-cap = cv2.VideoCapture(idx)\n \n+cap = cv2.VideoCapture(idx, cv2.CAP_AVFOUNDATION)\n+\n if not cap.isOpened():\n     print(\"❌ Failed to open camera\")\n     exit()\n \n+print(\"✅ Camera opened\")\n+\n while True:\n     ret, frame = cap.read()\n     if not ret:\n+        print(\"❌ Failed to read frame\")\n         break\n \n     cv2.imshow(f\"Camera {idx}\", frame)\n \n-    if cv2.waitKey(1) & 0xFF == ord('q'):\n+\n+    if cv2.waitKey(10) & 0xFF == ord('q'):\n         break\n \n cap.release()\n cv2.destroyAllWindows()\n-\n"
+                },
+                {
+                    "date": 1770131477827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n idx = int(sys.argv[1])\n print(f\"🎥 Testing camera index {idx}\")\n \n \n-cap = cv2.VideoCapture(idx, cv2.CAP_AVFOUNDATION)\n+cap = cv2.VideoCapture(0, cv2.CAP_AVFOUNDATION)\n \n if not cap.isOpened():\n     print(\"❌ Failed to open camera\")\n     exit()\n"
+                }
+            ],
+            "date": 1769790190510,
+            "name": "Commit-0",
+            "content": "import cv2\nimport sys\n\nidx = int(sys.argv[1])  # 从命令行读 index\nprint(f\"🎥 Testing camera index {idx}\")\n\ncap = cv2.VideoCapture(idx)\n\nif not cap.isOpened():\n    print(\"❌ Failed to open camera\")\n    exit()\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    cv2.imshow(f\"Camera {idx}\", frame)\n\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\ncap.release()\ncv2.destroyAllWindows()\n\n"
+        }
+    ]
+}

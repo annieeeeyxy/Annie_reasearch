@@ -1,0 +1,18 @@
+{
+    "sourceFile": "vison/camera_test.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1769787017197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1769787017197,
+            "name": "Commit-0",
+            "content": "import cv2\n\n# 打开摄像头（0 是默认 USB 摄像头）\ncap = cv2.VideoCapture(0)\n\nif not cap.isOpened():\n    print(\"❌ Camera not found\")\n    exit()\n\nprint(\"✅ Camera connected\")\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        print(\"❌ Failed to read frame\")\n        break\n\n    # 显示画面\n    cv2.imshow(\"Print Bed View\", frame)\n\n    # 按 q 退出\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\ncap.release()\ncv2.destroyAllWindows()\n\n"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "vision/camera_test.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1769788165486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1769788165486,
+            "name": "Commit-0",
+            "content": "import cv2\n\n# =========================\n# 打开摄像头（0 = 默认 USB 摄像头）\n# =========================\ncap = cv2.VideoCapture(0)\n\nif not cap.isOpened():\n    print(\"❌ Camera not found\")\n    exit()\n\nprint(\"✅ Camera connected\")\n\n# =========================\n# 主循环：实时读取画面\n# =========================\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        print(\"❌ Failed to read frame\")\n        break\n\n    # =========================\n    # 获取画面尺寸\n    # =========================\n    h, w, _ = frame.shape\n\n    # =========================\n    # 手动定义 ROI（打印机 print bed 区域）\n    # 你之后可以慢慢调这些数\n    # =========================\n    x1, y1 = 100, 100\n    x2, y2 = w - 100, h - 100\n\n    roi = frame[y1:y2, x1:x2]\n\n    # =========================\n    # 显示画面\n    # =========================\n    cv2.imshow(\"Full View\", frame)\n    cv2.imshow(\"Print Bed ROI\", roi)\n\n    # =========================\n    # 按 q 退出\n    # =========================\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\n# =========================\n# 释放资源\n# =========================\ncap.release()\ncv2.destroyAllWindows()\n\n"
+        }
+    ]
+}
