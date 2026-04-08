@@ -2,8 +2,9 @@ import cv2
 
 # =========================
 # 打开摄像头（0 = 默认 USB 摄像头）
+# macOS 需要 cv2.CAP_AVFOUNDATION
 # =========================
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv2.CAP_AVFOUNDATION)
 
 if not cap.isOpened():
     print("❌ Camera not found")
